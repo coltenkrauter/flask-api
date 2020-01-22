@@ -14,13 +14,14 @@ info:
 servers:
   - url: http://localhost:5000
 security:
-  - Auth: []
+  - BearerAuth: []
 paths:
   "/hello/world":
     get:
       tags:
         - Default
       summary: Summary of this endpoint
+      # security: [] # This will exclude this endpoint from BearerAuth authentication
       description: Description of this endpoint
       responses:
         "200":
@@ -40,7 +41,7 @@ paths:
 
 components:
   securitySchemes:
-    Auth:
+    BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
