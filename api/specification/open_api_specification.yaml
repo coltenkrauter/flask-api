@@ -1,0 +1,47 @@
+openapi: "3.0.0"
+info:
+  description: >-
+    This is the Open API 3 specification which is the source of truth for the Connexion Flask app.
+
+    1. <a href="https://auth-server/token" target="_blank">**Copy your token**</a>
+    2. Click the **Authorize** button below.
+    3. **Paste** the token and press the **Authorize** button.
+  version: 1.0.0
+  title: Flask REST API
+#  contact:
+#    name: Developer
+#    email: 
+servers:
+  - url: http://localhost:5000
+security:
+  - Auth: []
+paths:
+  "/hello/world":
+    get:
+      tags:
+        - Default
+      summary: Summary of this endpoint
+      description: Description of this endpoint
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hello:
+                    type: string
+                    example: world
+        "401":
+          description: Unauthorized
+        "400":
+          description: Bad request          
+
+components:
+  securitySchemes:
+    Auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-bearerInfoFunc: api.util.auth.token_info
